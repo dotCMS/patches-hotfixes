@@ -4,6 +4,8 @@ Compatible with dotCMS 5.0.3 up to 5.3.9.
 
 This plugin is meant to prevent SQL Injection attacks by sanitizing specific filtering parameters that are passed down to certain REST Endpoints. It works by programmatically adding a custom `javax.servlet.Filter` class to the Tomcat Container. This Filter wraps the existing HTTP Request object into a custom `javax.servlet.http.HttpServletRequestWrapper` object, which takes care of sanitizing request or query String parameters that might contain harmful code. 
 
+Related GitHub ticket: https://github.com/dotCMS/core/issues/19500
+
 ## Plugin Setup
 ### Adding/Removing REST Endpoints to Sanitize
 
