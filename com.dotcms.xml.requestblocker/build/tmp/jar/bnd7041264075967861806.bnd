@@ -1,4 +1,4 @@
-#Fri Jun 04 13:58:22 EDT 2021
+#Fri Jun 04 14:11:52 EDT 2021
 Bundle-Vendor=dotCMS
 Bundle-Activator=com.dotcms.xml.requestblocker.Activator
 Bundle-Description=dotCMS - Osgi XML Request Blocker 

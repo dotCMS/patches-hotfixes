@@ -31,7 +31,8 @@ public class Activator extends GenericBundleActivator {
     }
 
     private void addWebInterceptor() {
-
+        
+        Logger.info(this.getClass().getName(), "Adding the Request Blocker Web Filter");
         final FilterWebInterceptorProvider filterWebInterceptorProvider =
                         FilterWebInterceptorProvider.getInstance(Config.CONTEXT);
 

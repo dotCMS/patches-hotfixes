@@ -29,7 +29,7 @@ public class BlockRequestWebInterceptor implements WebInterceptor {
             SecurityLogger.logInfo(this.getClass(),
                             "Insecure XML PUT or Post Detected - possible vulnerability probing: "
                                             + request.getRequestURI());
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST,"{\"message\":\"Unable to deserialize XML\"}");
             return Result.SKIP_NO_CHAIN;
         }
 
