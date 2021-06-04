@@ -22,21 +22,21 @@ jar {
     manifest {
         attributes (
                 'Bundle-Vendor': 'dotCMS',
-                'Bundle-Description': 'dotCMS - Osgi Request Blocker Web Interceptors example',
+                'Bundle-Description': 'dotCMS - Osgi XML Request Blocker ',
                 'Bundle-DocURL': 'https://dotcms.com/',
-                'Bundle-Activator': 'com.dotcms.webinterceptors.Activator',
+                'Bundle-Activator': 'com.dotcms.xml.requestblocker.Activator',
                 'Import-Package': '*;version=0'
         )
     }
 }
-jar.finalizedBy 'fragmentJar'
+//jar.finalizedBy 'fragmentJar'
 
 /////////////////////////
 //Fragment jar
 /////////////////////////
 
 ext {
-    bundleName = "Request Blocker Web Interceptors  example fragment"
+    bundleName = "dotCMS - Osgi XML Request Blocker "
     bundleDescription = "dotCMS - Request Blocker Web Interceptors example fragment"
     fragmentHost = "system.bundle; extension:=framework"
     bundleSymbolicName = "" //Auto generated based on the plugin jar

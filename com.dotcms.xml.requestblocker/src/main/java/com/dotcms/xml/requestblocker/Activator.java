@@ -1,4 +1,4 @@
-package com.dotcms.webinterceptors;
+package com.dotcms.xml.requestblocker;
 
 import com.dotcms.filters.interceptor.FilterWebInterceptorProvider;
 import com.dotcms.filters.interceptor.WebInterceptorDelegate;

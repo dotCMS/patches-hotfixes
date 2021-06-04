@@ -1,4 +1,4 @@
-package com.dotcms.webinterceptors;
+package com.dotcms.xml.requestblocker;
 
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;

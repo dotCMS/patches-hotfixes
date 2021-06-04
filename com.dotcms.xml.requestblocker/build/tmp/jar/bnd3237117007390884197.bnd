@@ -1,0 +1,6 @@
+#Fri Jun 04 13:58:22 EDT 2021
+Bundle-Vendor=dotCMS
+Bundle-Activator=com.dotcms.xml.requestblocker.Activator
+Bundle-Description=dotCMS - Osgi XML Request Blocker 
+Import-Package=*;version\=0
+Bundle-DocURL=https\://dotcms.com/
