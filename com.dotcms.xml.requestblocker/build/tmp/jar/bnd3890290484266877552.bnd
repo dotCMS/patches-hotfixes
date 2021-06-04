@@ -1,0 +1,6 @@
+#Fri Jun 04 13:51:40 EDT 2021
+Bundle-Vendor=dotCMS
+Bundle-Activator=com.dotcms.webinterceptors.Activator
+Bundle-Description=dotCMS - Osgi Request Blocker Web Interceptors example
+Import-Package=*;version\=0
+Bundle-DocURL=https\://dotcms.com/

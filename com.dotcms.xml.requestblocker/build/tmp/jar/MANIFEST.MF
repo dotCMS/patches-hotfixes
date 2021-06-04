@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-Description: dotCMS - Osgi Request Blocker Web Interceptors exa
+ mple
+Bundle-Activator: com.dotcms.webinterceptors.Activator
+Bundle-Vendor: dotCMS
+Bundle-DocURL: https://dotcms.com/
+Import-Package: *;version=0
+
