@@ -2,6 +2,10 @@
 
 This osgi plugin blocks all requests of contenttype `application/xml` to the `/api/content endpoint`.  Customers posting content as xml should instead use the `json` version which accepts `application/json` formatted content.  While there is no know working expolit for that uses the xml content endpoint, it has already been deprecated and should not be used. 
 
+## Versions
+This plugin should work for versions 4.1 and higher.  This plugin is not needed in versions 21.05+ or LTS versions 5.3.8.5+ as the fix has been incorporated in the code.
+
+
 
 ## Installing 
 You can download the precompiled jar file here:
