@@ -5,6 +5,8 @@ This osgi plugin blocks all requests of contenttype `application/xml` to the `/a
 ## Versions
 This plugin should work for dotCMS versions 4.1 and higher.  This plugin is not needed in dotCMS versions 21.05+ or LTS versions 5.3.8.5+ as the fix has been incorporated in the code.
 
+You can see the original issue here:
+https://github.com/dotCMS/core/issues/20364
 
 
 ## Installing 
