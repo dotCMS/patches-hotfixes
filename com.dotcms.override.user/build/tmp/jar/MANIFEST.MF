@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-Vendor: dotCMS
+Bundle-Description: dotCMS - Override class example
+Bundle-DocURL: https://dotcms.com/
+Bundle-Activator: com.dotmarketing.osgi.override.Activator
+Override-Classes: com.liferay.portal.model.UserModel
+Import-Package: !com.liferay.portal.model,*;version=0
+
