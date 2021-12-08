@@ -1,7 +1,0 @@
-#Wed Dec 08 12:55:45 CST 2021
-Override-Classes=com.liferay.portal.model.UserModel
-Bundle-Description=dotCMS - Override class example
-Bundle-Vendor=dotCMS
-Bundle-DocURL=https\://dotcms.com/
-Import-Package=\!com.liferay.portal.model,*;version\=0
-Bundle-Activator=com.dotmarketing.osgi.override.Activator
