@@ -3,7 +3,6 @@ package com.dotcms.security.multipartrequest;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.HttpMethod;
 import com.dotcms.filters.interceptor.Result;
 import com.dotcms.filters.interceptor.WebInterceptor;
 import com.dotmarketing.util.UtilMethods;
@@ -32,7 +31,7 @@ public class MultiPartRequestSecurityWebInterceptor implements WebInterceptor {
 
         final String method = request.getMethod();
 
-        if (HttpMethod.POST.equalsIgnoreCase(method) || HttpMethod.PUT.equalsIgnoreCase(method)) {
+        if ("POST".equalsIgnoreCase(method) || "PUT".equalsIgnoreCase(method)) {
 
             final String contentTypeHeader = request.getHeader("content-type");
             if (UtilMethods.isSet(contentTypeHeader) && contentTypeHeader.contains("multipart/form-data")) {
