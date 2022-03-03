@@ -1,18 +1,12 @@
 package com.dotcms.security.multipartrequest;
 
-import com.dotcms.filters.interceptor.Result;
-import com.dotcms.filters.interceptor.WebInterceptor;
-import com.dotmarketing.exception.DotSecurityException;
-import com.dotmarketing.util.SecurityLogger;
-import com.dotmarketing.util.UtilMethods;
-
-import javax.servlet.ServletException;
+import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import javax.ws.rs.HttpMethod;
-import java.io.IOException;
-import java.util.Locale;
+import com.dotcms.filters.interceptor.Result;
+import com.dotcms.filters.interceptor.WebInterceptor;
+import com.dotmarketing.util.UtilMethods;
 
 /**
  * This web interceptor checks if the current request is a POST or PUT and multipart

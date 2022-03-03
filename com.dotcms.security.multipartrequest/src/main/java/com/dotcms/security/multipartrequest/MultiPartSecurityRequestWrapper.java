@@ -1,5 +1,6 @@
 package com.dotcms.security.multipartrequest;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -56,7 +57,7 @@ public class MultiPartSecurityRequestWrapper extends HttpServletRequestWrapper {
         if(null!=body) {
             return new ServletInputStreamImpl(new ByteArrayInputStream(body));
         }
-        return new ServletInputStreamImpl(Files.newInputStream(tmpFile.toPath()));
+        return new ServletInputStreamImpl(new BufferedInputStream(Files.newInputStream(tmpFile.toPath())));
         
         
     }
@@ -126,7 +127,7 @@ public class MultiPartSecurityRequestWrapper extends HttpServletRequestWrapper {
 
     
     private void checkFile(final File tmpFile) throws IOException {
-        try(InputStream in = Files.newInputStream(tmpFile.toPath())){
+        try(InputStream in = new BufferedInputStream(Files.newInputStream(tmpFile.toPath()))){
             checkSecurityInputStream(in);
         }
 
