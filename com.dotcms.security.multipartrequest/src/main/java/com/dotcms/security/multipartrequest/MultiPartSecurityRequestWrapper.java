@@ -1,41 +1,64 @@
 package com.dotcms.security.multipartrequest;
 
-import org.apache.commons.io.IOUtils;
-
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import org.apache.commons.io.IOUtils;
+import com.dotmarketing.util.SecurityLogger;
 
 public class MultiPartSecurityRequestWrapper extends HttpServletRequestWrapper {
 
-    public byte[] getBody() {
-        return body;
+
+    final byte[] body;
+    final File tmpFile;
+    
+    // if greater than 50MB, cache to disk
+    final long cacheIfLarger =1024*1000*50;
+    
+    
+    boolean shouldCacheToDisk(final HttpServletRequest request) {
+        
+        int contentLength = request.getContentLength();
+        return contentLength<=0 || contentLength > cacheIfLarger ;
+        
     }
-
-    public void setBody(final byte[] body) {
-        this.body = body;
-    }
-
-    private byte[] body;
-
+    
+    
     public MultiPartSecurityRequestWrapper(final HttpServletRequest request) throws IOException {
         super(request);
-        try {
-            body = IOUtils.toByteArray(super.getInputStream());
-        } catch (NullPointerException e){
-            // Quiet
+        
+        if(shouldCacheToDisk(request)) {
+            body=null;
+            tmpFile =  Files.createTempFile("multipartSec", ".tmp").toFile();
+            IOUtils.copy(request.getInputStream(), Files.newOutputStream(tmpFile.toPath()));
+            checkFile(tmpFile);
+            return;
         }
+        
+        
+        tmpFile=null;
+        body = IOUtils.toByteArray(super.getInputStream());
+        checkMemory(body);
+
     }
 
     @Override
     public ServletInputStream getInputStream() throws IOException {
-        return new ServletInputStreamImpl(new ByteArrayInputStream(body));
+        
+        if(null!=body) {
+            return new ServletInputStreamImpl(new ByteArrayInputStream(body));
+        }
+        return new ServletInputStreamImpl(Files.newInputStream(tmpFile.toPath()));
+        
+        
     }
 
     @Override
@@ -92,4 +115,57 @@ public class MultiPartSecurityRequestWrapper extends HttpServletRequestWrapper {
 
         }
     }
+    
+    private void checkMemory(byte[] bodyBytes) throws IOException {
+
+        try(InputStream in = new ByteArrayInputStream(bodyBytes)){
+            checkSecurityInputStream(in);
+        }
+    }
+    
+
+    
+    private void checkFile(final File tmpFile) throws IOException {
+        try(InputStream in = Files.newInputStream(tmpFile.toPath())){
+            checkSecurityInputStream(in);
+        }
+
+    }
+    
+    private void checkSecurityInputStream(final InputStream tmpStream) throws IOException {
+        try(BoundedBufferedReader reader = new BoundedBufferedReader(new InputStreamReader(tmpStream, "UTF-8"))){
+            
+            String line;
+            while ((line = reader.readLine()) != null) {
+                testString(line);
+            }
+        }
+    }
+    
+    
+    
+    
+
+    
+    private void testString(String lineToTest) {
+        if(null == lineToTest) {
+            return;
+        }
+        lineToTest = lineToTest.length()>1024 ? lineToTest.substring(0,1024) : lineToTest;
+        lineToTest = lineToTest.toLowerCase().trim();
+        if (!lineToTest.startsWith("content-disposition:") || ! lineToTest.contains("filename=")) {
+            return;
+        }
+        
+        lineToTest = lineToTest.substring(lineToTest.indexOf("filename="), lineToTest.length());
+        
+        
+        if (lineToTest.indexOf("/") != -1 || lineToTest.indexOf("\\") != -1 || lineToTest.indexOf("..") != -1) {
+
+            SecurityLogger.logInfo(this.getClass(), "The filename: " + lineToTest + " is invalid");
+            throw new IllegalArgumentException("Illegal Request");
+        }
+
+    }
+    
 }

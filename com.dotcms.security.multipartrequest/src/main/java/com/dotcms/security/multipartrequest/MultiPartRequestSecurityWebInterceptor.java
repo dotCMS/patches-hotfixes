@@ -21,7 +21,7 @@ import java.util.Locale;
  */
 public class MultiPartRequestSecurityWebInterceptor implements WebInterceptor {
 
-    private static final String ALL_REQUEST = "/*";
+    private static final String[] BLOCK_REQUESTS = {"/*"};
 
     public MultiPartRequestSecurityWebInterceptor() {
 
@@ -29,7 +29,7 @@ public class MultiPartRequestSecurityWebInterceptor implements WebInterceptor {
 
     @Override
     public String[] getFilters() {
-        return new String[] { ALL_REQUEST };
+        return BLOCK_REQUESTS;
     }
 
     @Override
@@ -45,7 +45,6 @@ public class MultiPartRequestSecurityWebInterceptor implements WebInterceptor {
 
                 final MultiPartSecurityRequestWrapper requestWrapper = new MultiPartSecurityRequestWrapper(request);
 
-                this.checkSecurityRequest(requestWrapper);
 
                 return new Result.Builder().wrap(requestWrapper).next().build();
             }
@@ -54,27 +53,7 @@ public class MultiPartRequestSecurityWebInterceptor implements WebInterceptor {
         return Result.NEXT;
     }
 
-    private void checkSecurityRequest(final MultiPartSecurityRequestWrapper request) throws IOException {
 
-        try {
-
-            final String body = new String(request.getBody()).toLowerCase();
-            final int filenameIndex  = body.indexOf("filename=");
-            final int finalLineIndex = body.indexOf("\n", filenameIndex);
-            final String fileName    = body.substring(filenameIndex, finalLineIndex);
-
-            if (UtilMethods.isSet(fileName) &&
-                    (fileName.indexOf("/") != -1 || fileName.indexOf("\\")  != -1)) {
-
-                SecurityLogger.logInfo(this.getClass(),
-                        "The filename: " + fileName + " is invalid");
-                throw new IllegalArgumentException("Illegal Request");
-            }
-        } catch (IllegalArgumentException e) {
-            throw e;
-        } catch (Exception e) {
-
-            throw new IOException(e);
-        }
-    }
+    
+    
 }

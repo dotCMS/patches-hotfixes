@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    compile('com.dotcms:dotcms:5.3.8') { transitive = true }
+    compile('com.dotcms:dotcms:5.2.8') { transitive = true }
 }
 
 import java.util.jar.*
@@ -27,7 +27,7 @@ jar {
     manifest {
         attributes (
                 'Bundle-Vendor': 'dotCMS',
-                'Bundle-Description': 'dotCMS - OSGI Security Multipart request example',
+                'Bundle-Description': 'dotCMS - OSGI Security Multipart request sanitizer',
                 'Bundle-DocURL': 'https://dotcms.com/',
                 'Bundle-Activator': 'com.dotcms.security.multipartrequest.Activator',
                 'Import-Package': '*;version=0'
@@ -42,8 +42,8 @@ jar.finalizedBy 'fragmentJar'
 /////////////////////////
 
 ext {
-    bundleName = "dotCMS Actionlet fragment"
-    bundleDescription = "dotCMS - OSGI Actionlet example fragment"
+    bundleName = "dotCMS Multipart fragment"
+    bundleDescription = "dotCMS - OSGI Multipart fragment"
     fragmentHost = "system.bundle; extension:=framework"
     bundleSymbolicName = "" //Auto generated based on the plugin jar
     bundleVersion = "" //Auto generated based on the plugin jar
