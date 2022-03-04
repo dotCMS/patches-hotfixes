@@ -118,7 +118,6 @@ public class MultiPartSecurityRequestWrapper extends HttpServletRequestWrapper {
     }
     
     private void checkMemory(byte[] bodyBytes) throws IOException {
-
         try(InputStream in = new ByteArrayInputStream(bodyBytes)){
             checkSecurityInputStream(in);
         }
@@ -135,7 +134,6 @@ public class MultiPartSecurityRequestWrapper extends HttpServletRequestWrapper {
     
     private void checkSecurityInputStream(final InputStream tmpStream) throws IOException {
         try(BoundedBufferedReader reader = new BoundedBufferedReader(new InputStreamReader(tmpStream, "UTF-8"))){
-            
             String line;
             while ((line = reader.readLine()) != null) {
                 testString(line);
@@ -144,27 +142,20 @@ public class MultiPartSecurityRequestWrapper extends HttpServletRequestWrapper {
     }
     
     
-    
-    
-
-    
     private void testString(String lineToTest) {
-        if(null == lineToTest) {
-            return;
-        }
-        lineToTest = lineToTest.length()>1024 ? lineToTest.substring(0,1024) : lineToTest;
-        lineToTest = lineToTest.toLowerCase().trim();
-        if (!lineToTest.startsWith("content-disposition:") || ! lineToTest.contains("filename=")) {
+        
+        lineToTest = lineToTest.toLowerCase();
+        if (!lineToTest.contains("content-disposition:") || ! lineToTest.contains("filename=")) {
             return;
         }
         
-        lineToTest = lineToTest.substring(lineToTest.indexOf("filename="), lineToTest.length());
+        final String fileName = ContentDispositionFileNameParser.parse(lineToTest);
         
         
-        if (lineToTest.indexOf("/") != -1 || lineToTest.indexOf("\\") != -1 || lineToTest.indexOf("..") != -1) {
+        if (null == fileName || fileName.indexOf("/") != -1 || fileName.indexOf("\\") != -1 || fileName.indexOf("..") != -1) {
 
-            SecurityLogger.logInfo(this.getClass(), "The filename: " + lineToTest + " is invalid");
-            throw new IllegalArgumentException("Illegal Request");
+            SecurityLogger.logInfo(this.getClass(), "The filename: '" + fileName + "' is invalid");
+            throw new IllegalArgumentException("Illegal Multipart Request");
         }
 
     }
