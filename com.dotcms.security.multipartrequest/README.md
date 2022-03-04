@@ -12,7 +12,7 @@ https://github.com/dotCMS/patches-hotfixes/blob/master/com.dotcms.security.multi
 The sha256 values for the hotfix files are:
 | File | sha256|
 | ----------- | ----------- |
-| com.dotcms.security.multipartrequest-0.1.jar | f530e04b8c17357884718865ea7649a304f6287da6fe12a65fdbb8d985102a1a |
+| com.dotcms.security.multipartrequest-0.1.jar | 17ed5cd75153a20204c1889023b3e2da0bdcf1759e78a758744f8a789b1d93e6 |
 | com.dotcms.security.multipartrequest.fragment-0.1.jar | b470319daad23349dafcea8a0a298e9e4b2d57cb1b11664a1544865827b34d3d |
 
 
