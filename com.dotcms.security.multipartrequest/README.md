@@ -6,16 +6,9 @@ The plugins attempts to use memory wisely.  Files uploaded are scanned in memory
 
 ## How to install this plugin
 
-The jar files can be downloaded directly and added to your dotCMS instance. You can find the binary here.  This version works on dotCMS versions 5.1.6 and greater.
-https://github.com/dotCMS/patches-hotfixes/blob/master/com.dotcms.security.multipartrequest/build/libs/
+The jar files can be downloaded directly and added to your dotCMS instance. You can find the binaries under the `build/libs` directory.  
 
-The sha256 values for the hotfix files are:
-| File | sha256|
-| ----------- | ----------- |
-| com.dotcms.security.multipartrequest-0.1.jar | 17ed5cd75153a20204c1889023b3e2da0bdcf1759e78a758744f8a789b1d93e6 |
-| com.dotcms.security.multipartrequest.fragment-0.1.jar | b470319daad23349dafcea8a0a298e9e4b2d57cb1b11664a1544865827b34d3d |
-
-
+https://github.com/dotCMS/patches-hotfixes/tree/v.4.x/com.dotcms.security.multipartrequest/build/libs
 
 
 ## How to build the plugin
