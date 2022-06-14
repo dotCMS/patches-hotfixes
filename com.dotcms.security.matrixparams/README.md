@@ -35,7 +35,7 @@ With this interceptor installed, if any of the above characters are found in the
 ## How to install this plugin
 
 The jar files can be downloaded directly and added to your dotCMS instance. You can find the binary here.  This version works on dotCMS versions 5.1.6 and greater.
-https://github.com/dotCMS/patches-hotfixes/blob/master/com.dotcms.security.multipartrequest/build/libs/
+https://github.com/dotCMS/patches-hotfixes/blob/master/com.dotcms.security.matrixparams/build/libs/
 
 The sha256 values for the hotfix file is:
 | File | sha256|
