@@ -23,10 +23,10 @@ In an abundance of caution, this Interceptor also disallows other non-standard U
             "%3F", // encoded questionmark
             "%3D", // encoded equals
             "%00", // encoded null
-            "\0", // null
-            "\r", // carriage return
-            "\n", // line feed
-            "\f"  // form feed
+            "\0",  // null
+            "\r",  // carriage return
+            "\n",  // line feed
+            "\f"   // form feed
 ```
 
 With this interceptor installed, if any of the above characters are found in the request URI, dotCMS will return a 404 response.
