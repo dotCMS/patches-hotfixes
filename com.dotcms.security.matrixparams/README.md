@@ -1,8 +1,8 @@
 # MatrixParameter Security Interceptor
 
-This plugin adds a web interceptor that prevents dotCMS from accepting "matrix" parameters in uris. A matrix parameter is a non-standard parameter list that is started with a semi-colon. Java app servers like tomcat and old school j2ee applications used to use matrix parameters to encode the JSESSIONID on the end of a url, e.g.
+This plugin adds a web interceptor that prevents dotCMS from accepting "matrix" parameters in uris. A matrix parameter is a non-standard parameter list that is started with a semi-colon. Java app servers like tomcat and old school j2ee applications used to use matrix parameters to encode the JSESSIONID on the end of a url, e.g. urls like:
 
-https://oldapplication.com/index.jsp;JSESSIONID=AAABBB4532154
+`https://oldapplication.com/index.jsp;JSESSIONID=AAABBB4532154`
 
 The issue is that by allowing matrix parameters allows for security filters based on URIs to be bypassed, in this example the dotCMS XSS prevention filter.  
 
