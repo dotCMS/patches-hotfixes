@@ -8,7 +8,7 @@ The issue is that by allowing matrix parameters allows for security filters base
 
 In an abundance of caution, this Interceptor also disallows other non-standard URI characters that are commonly used in attacks.  Below is a list of characters that are explictly disallowed.
 
-```
+```java
             ";",
             "..",
             "//",
