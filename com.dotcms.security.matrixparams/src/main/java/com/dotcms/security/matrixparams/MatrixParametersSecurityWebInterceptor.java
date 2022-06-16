@@ -48,7 +48,7 @@ public class MatrixParametersSecurityWebInterceptor implements WebInterceptor {
             "/./",
             "\\",
             "?",
-            "=",
+            // "=",
             "%3B", // encoded semi-colon
             "%2E", // encoded period '.'
             "%2F", // encoded forward slash '/'

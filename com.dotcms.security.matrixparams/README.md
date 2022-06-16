@@ -15,7 +15,6 @@ In an abundance of caution, this Interceptor also disallows other non-standard U
             "/./",
             "\\",
             "?",
-            "=",
             "%3B", // encoded semi-colon
             "%2E", // encoded period '.'
             "%2F", // encoded forward slash '/'
@@ -40,7 +39,7 @@ https://github.com/dotCMS/patches-hotfixes/blob/master/com.dotcms.security.matri
 The sha256 values for the hotfix file is:
 | File | sha256|
 | ----------- | ----------- |
-| com.dotcms.security.matrixparams-0.1.jar | 599c7519a47e8e54b2085fd09874f3747a6fb992645f9b54484b0d4f446bd5c1 |
+| com.dotcms.security.matrixparams-0.1.jar | e9368163e76989a9dc8593645babc624652576f009e208b8b50d1f395d805c34 |
 
 
 ## How to build the plugin
