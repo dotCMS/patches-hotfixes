@@ -39,7 +39,7 @@ https://github.com/dotCMS/patches-hotfixes/blob/master/com.dotcms.security.matri
 The sha256 values for the hotfix file is:
 | File | sha256|
 | ----------- | ----------- |
-| com.dotcms.security.matrixparams-0.1.jar | e9368163e76989a9dc8593645babc624652576f009e208b8b50d1f395d805c34 |
+| com.dotcms.security.matrixparams-0.1.jar | bd29545bd40ab7ee9efaaa30c3f4ba96bfdd7d05aef8c635979305635aad66db |
 
 
 ## How to build the plugin
