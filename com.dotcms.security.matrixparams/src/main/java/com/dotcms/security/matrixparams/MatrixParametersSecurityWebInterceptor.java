@@ -19,15 +19,17 @@ public class MatrixParametersSecurityWebInterceptor implements WebInterceptor {
 
     private static final long serialVersionUID = 1L;
 
+    private static final String PATTERN_IS_NULL = "PATTERN_IS_NULL";
+
     private static final String[] BLOCK_REQUESTS = {"/*"};
 
     public MatrixParametersSecurityWebInterceptor() {
 
     }
     
-    final String pattern = Config.getStringProperty("URI_NORMALIZATION_FORBIDDEN_REGEX", null);
+    final String pattern = Config.getStringProperty("URI_NORMALIZATION_FORBIDDEN_REGEX", PATTERN_IS_NULL);
     
-    Optional<Pattern> forbiddenRegex = (pattern != null) ? Optional.of(Pattern.compile(pattern)) : Optional.empty();
+    Optional<Pattern> forbiddenRegex = (!pattern.equals(PATTERN_IS_NULL)) ? Optional.of(Pattern.compile(pattern)) : Optional.empty();
     
     
     
