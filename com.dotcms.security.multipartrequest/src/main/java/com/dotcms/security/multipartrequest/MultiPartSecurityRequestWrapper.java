@@ -153,7 +153,9 @@ public class MultiPartSecurityRequestWrapper extends HttpServletRequestWrapper {
         }
 
         final String fileName = ContentDispositionFileNameParser.parse(lineToTest);
-        
+        if (fileName == null) {
+            return;
+        }
         
         if (null == fileName || fileName.indexOf("/") != -1 || fileName.indexOf("\\") != -1 || fileName.indexOf("..") != -1) {
 
